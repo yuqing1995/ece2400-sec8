@@ -13,9 +13,6 @@
 
 SListInt::SListInt()
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement constructor
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
   m_head_p = nullptr;
 }
 
@@ -55,9 +52,6 @@ SListInt& SListInt::operator=( const SListInt& lst )
 
 void SListInt::push_front( int v )
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement push_front
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
   Node* new_node_p   = new Node;
   new_node_p->value  = v;
   new_node_p->next_p = m_head_p;
@@ -70,9 +64,6 @@ void SListInt::push_front( int v )
 
 int SListInt::at( size_t idx ) const
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement at
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
   Node*  curr_p   = m_head_p;
   size_t curr_idx = 0;
 
@@ -92,9 +83,6 @@ int SListInt::at( size_t idx ) const
 
 void SListInt::reverse()
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement reverse
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
   size_t size   = 0;
   Node*  curr_p = m_head_p;
   while ( curr_p != nullptr ) {
@@ -127,9 +115,6 @@ void SListInt::reverse()
 
 void SListInt::print() const
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement print
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
   Node* curr_p = m_head_p;
   while ( curr_p != nullptr ) {
     std::printf( "%d ", curr_p->value );
@@ -144,9 +129,6 @@ void SListInt::print() const
 
 void SListInt::copy( const SListInt& lst )
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement copy
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
   Node* curr_p = lst.m_head_p;
   while ( curr_p != nullptr ) {
     push_front( curr_p->value );
@@ -161,9 +143,6 @@ void SListInt::copy( const SListInt& lst )
 
 void SListInt::clear()
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement clear
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
   while ( m_head_p != nullptr ) {
     Node* temp_p = m_head_p->next_p;
     delete m_head_p;
