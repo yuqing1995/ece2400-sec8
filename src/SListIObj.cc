@@ -14,9 +14,7 @@
 
 SListIObj::SListIObj()
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement constructor
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  m_head_p = nullptr;
 }
 
 //------------------------------------------------------------------------
@@ -55,9 +53,10 @@ SListIObj& SListIObj::operator=( const SListIObj& lst )
 
 void SListIObj::push_front( const IObject& v )
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement push_front
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  Node* new_node = new Node;
+  new_node->obj_p = v.clone();
+  new_node->next_p = m_head_p;
+  m_head_p = new_node;
 }
 
 //------------------------------------------------------------------------
@@ -66,9 +65,15 @@ void SListIObj::push_front( const IObject& v )
 
 const IObject& SListIObj::at( size_t idx ) const
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement at
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  Node* tmp = m_head_p;
+  while (tmp != nullptr){
+    idx--;
+    tmp = tmp->next_p;
+    if (idx == 0){
+      break;
+    }
+  }
+  return *(tmp->obj_p);
 }
 
 //------------------------------------------------------------------------
@@ -77,9 +82,16 @@ const IObject& SListIObj::at( size_t idx ) const
 
 void SListIObj::reverse()
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement reverse
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  Node* prev = nullptr;
+  Node* next = nullptr;
+  Node* curr = m_head_p;
+  while(curr != nullptr){
+    next = curr->next_p;
+    curr->next_p = prev;
+    prev = curr;
+    curr = next;
+  }
+  m_head_p = prev;
 }
 
 //------------------------------------------------------------------------
@@ -88,9 +100,13 @@ void SListIObj::reverse()
 
 void SListIObj::print() const
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement print
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  Node* tmp = m_head_p;
+  while (tmp != nullptr){
+    tmp->obj_p->print();
+    tmp = tmp->next_p;
+    printf("->");
+  }
+  printf("\n");
 }
 
 //------------------------------------------------------------------------
@@ -99,9 +115,7 @@ void SListIObj::print() const
 
 void SListIObj::copy( const SListIObj& lst )
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement copy
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  
 }
 
 //------------------------------------------------------------------------
@@ -110,8 +124,11 @@ void SListIObj::copy( const SListIObj& lst )
 
 void SListIObj::clear()
 {
-  //''' LAB TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-  // Implement clear
-  //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  while(m_head_p != nullptr){
+    Node* temp = m_head_p->next_p;
+    delete m_head_p->obj_p;
+    delete m_head_p;
+    m_head_p = temp;
+  }
 }
 

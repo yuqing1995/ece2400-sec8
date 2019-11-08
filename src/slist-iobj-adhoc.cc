@@ -25,6 +25,10 @@ int main( void )
   // Print the list
 
   list.print();
+  
+  list.reverse();
+  
+  list.print();
 
   return 0;
 }
